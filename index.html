@@ -3,557 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tchoisang lama | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Language Learning App - English to Bengali</title>
+    <!-- Import elegant fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --bg-alt: #f9fafb;
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --border: #e5e7eb;
-            --font-main: 'Inter', sans-serif;
-            --transition: all 0.3s ease;
-        }
-
+        /* CSS Reset & Variables */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --primary-bg: #fdf5f6; /* Soft blush pink */
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-dark: #4a3b4e; /* Deep lavender-grey */
+            --accent-pink: #f48fb1;
+            --accent-lavender: #ce93d8;
+            --accent-mint: #a5d6a7;
+            --btn-text: #ffffff;
         }
 
         body {
-            font-family: var(--font-main);
-            color: var(--text-main);
-            background-color: var(--bg-color);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #e8f5e9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-dark);
+            overflow: hidden; /* For floating petals */
+            position: relative;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        /* Ambient Floral Background Decorations */
+        .floral-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
         }
 
-        ul {
-            list-style: none;
+        .petal {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, #ffbcf2, #ff8fb1);
+            border-radius: 50% 0 50% 50%;
+            opacity: 0.6;
+            animation: float 15s infinite linear;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .petal:nth-child(1) { width: 30px; height: 30px; left: 10%; animation-duration: 12s; }
+        .petal:nth-child(2) { width: 40px; height: 40px; left: 30%; animation-duration: 18s; animation-delay: 2s; background: radial-gradient(circle at 30% 30%, #e1bee7, #ce93d8); border-radius: 50% 50% 0 50%; }
+        .petal:nth-child(3) { width: 25px; height: 25px; left: 60%; animation-duration: 14s; animation-delay: 5s; }
+        .petal:nth-child(4) { width: 35px; height: 35px; left: 80%; animation-duration: 16s; animation-delay: 1s; background: radial-gradient(circle at 30% 30%, #fff9c4, #ffe082); border-radius: 0 50% 50% 50%; }
+        .petal:nth-child(5) { width: 20px; height: 20px; left: 90%; animation-duration: 10s; animation-delay: 4s; }
+
+        @keyframes float {
+            0% { transform: translateY(-50px) rotate(0deg) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
+        }
+
+        /* Main App Container (Glassmorphism) */
+        .app-container {
+            position: relative;
+            z-index: 1;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px 30px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05), inset 0 0 15px rgba(255, 255, 255, 0.5);
+            text-align: center;
         }
 
         /* Typography */
-        h1, h2, h3 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #c2185b; /* Deep rose */
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
         }
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
+        .subtitle {
+            font-size: 0.9rem;
+            color: #7b1fa2;
+            margin-bottom: 25px;
+            font-weight: 600;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background-color: var(--accent);
-            bottom: -10px;
-            left: 0;
-            border-radius: 2px;
-        }
-
-        p {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-size: 1.125rem;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
+        /* Category Selector */
+        select {
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            transition: var(--transition);
+            padding: 12px 20px;
+            margin-bottom: 30px;
+            border-radius: 25px;
+            border: 2px solid rgba(244, 143, 177, 0.5);
+            background: rgba(255, 255, 255, 0.7);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
         }
 
-        .nav-container {
+        select:focus {
+            border-color: var(--accent-lavender);
+            box-shadow: 0 4px 15px rgba(206, 147, 216, 0.3);
+        }
+
+        /* Flashcard Area (3D Flip) */
+        .flashcard-wrapper {
+            perspective: 1000px;
+            width: 100%;
+            height: 220px;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 20px;
+        }
+
+        .card-front {
+            border-bottom: 5px solid var(--accent-pink);
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            border-bottom: 5px solid var(--accent-lavender);
+        }
+
+        .word-en {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #d81b60;
+        }
+
+        .word-bn {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #6a1b9a;
+            margin-bottom: 10px;
+        }
+
+        .pronunciation {
+            font-size: 1.1rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 15px;
+            opacity: 0.7;
+        }
+
+        /* Navigation Controls */
+        .controls {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            gap: 15px;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            bottom: -5px;
-            left: 0;
-            transition: var(--transition);
-        }
-
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-main);
-        }
-
-        /* Sections */
-        section {
-            padding: 6rem 0;
-        }
-
-        section:nth-child(even) {
-            background-color: var(--bg-alt);
-        }
-
-        /* Hero Section */
-        #hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 4rem;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            letter-spacing: -1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-content h3 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(37, 99, 235, 0.2);
-        }
-
-        /* About Section */
-        #about p {
-            max-width: 800px;
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        /* Experience Section */
-        .experience-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            max-width: 800px;
-        }
-
-        .experience-card {
-            background: var(--bg-color);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            transition: var(--transition);
-        }
-
-        .experience-card:hover {
-            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-            transform: translateY(-5px);
-        }
-
-        .experience-card h3 {
-            margin-bottom: 0.2rem;
-            color: var(--text-main);
-        }
-
-        .exp-date {
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-color);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .project-card:hover {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            transform: translateY(-5px);
-        }
-
-        .project-content {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-content h3 {
-            margin-bottom: 1rem;
-        }
-
-        .project-content p {
+        button {
+            flex: 1;
+            padding: 12px 0;
+            border-radius: 30px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
             font-size: 1rem;
-            flex-grow: 1;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent);
             font-weight: 600;
-            margin-top: 1.5rem;
-            transition: var(--transition);
+            color: var(--btn-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .project-link:hover {
-            color: var(--accent-hover);
-            gap: 0.8rem;
+        #prev-btn {
+            background: linear-gradient(45deg, #b39ddb, #ce93d8);
         }
 
-        /* Contact Section */
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
+        #next-btn {
+            background: linear-gradient(45deg, #f48fb1, #ffb74d);
         }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 3rem;
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .contact-item {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            font-size: 1.2rem;
-            color: var(--text-main);
-            transition: var(--transition);
-            padding: 1rem;
-            border-radius: 8px;
-            background: var(--bg-color);
-            border: 1px solid var(--border);
-        }
+        #prev-btn:hover { background: linear-gradient(45deg, #9575cd, #ba68c8); }
+        #next-btn:hover { background: linear-gradient(45deg, #e91e63, #ffa726); }
 
-        .contact-item:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--accent);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--text-main);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
+        button:active {
+            transform: translateY(1px);
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            h2 { font-size: 2rem; }
-            .hero-content h1 { font-size: 3rem; }
-            .hero-content h3 { font-size: 1.2rem; }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--bg-color);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 3rem;
-                transition: var(--transition);
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-            }
+        @media (max-width: 480px) {
+            .app-container { padding: 30px 20px; }
+            h1 { font-size: 2.5rem; }
+            .word-en { font-size: 1.8rem; }
+            .word-bn { font-size: 2rem; }
+            .flashcard-wrapper { height: 190px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="container nav-container">
-            <a href="#hero" class="logo">Tchoisang<span>.</span></a>
-            <div class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Floral Floating Background Elements -->
+    <div class="floral-bg">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+    </div>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="container hero-content">
-            <h1>Hi, I'm Tchoisang lama.</h1>
-            <h3>B.A. Student | Script Writer | Creative Web Explorer</h3>
-            <a href="#contact" class="btn">Get In Touch</a>
-        </div>
-    </section>
+    <!-- Main Glass App Interface -->
+    <div class="app-container">
+        <h1>Blossom Lingo</h1>
+        <div class="subtitle">Bloom into a new language</div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>I'm currently pursuing my Bachelor of Arts, where I get to explore literature, ideas, and language every day. Outside of class, I love writing scripts — short stories, dialogues, and concepts that bring characters to life on the page.</p>
-            <p>I'm also curious about creative web projects, which is where coding and storytelling meet for me.</p>
-        </div>
-    </section>
+        <select id="category-select">
+            <!-- Options populated by JS -->
+        </select>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="experience-grid">
-                
-                <div class="experience-card">
-                    <h3>B.A Student</h3>
-                    <span class="exp-date">Present</span>
-                    <p>Studying arts with a focus on literature and creative expression — building a strong foundation for storytelling.</p>
+        <div class="flashcard-wrapper" id="flashcard-container">
+            <div class="flashcard" id="flashcard">
+                <div class="card-face card-front">
+                    <div class="word-en" id="english-word">Loading...</div>
+                    <div class="hint">Tap to flip</div>
                 </div>
-
-                <div class="experience-card">
-                    <h3>Script Writer</h3>
-                    <span class="exp-date">Ongoing</span>
-                    <p>Writing original scripts including short films, dialogues, and creative narrative concepts. Focused on character-driven storytelling and emotional pacing.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>Language Learning App</h3>
-                        <p>A creative web project exploring the intersection of coding and language education.</p>
-                        <a href="https://github.com/Tchoisanglama870/Languagelearningapp" target="_blank" class="project-link">
-                            View on GitHub <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2>Let's Connect</h2>
-                <p>Whether you want to discuss literature, scriptwriting, or web projects, I'd love to hear from you.</p>
-                
-                <div class="contact-info">
-                    <a href="mailto:lamatchoisang@gmail.com" class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        lamatchoisang@gmail.com
-                    </a>
-                    
-                    <a href="tel:+918927353197" class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        +91 8927353197
-                    </a>
-
-                    <a href="https://github.com/Tchoisanglama870" target="_blank" class="contact-item">
-                        <i class="fab fa-github"></i>
-                        GitHub Profile
-                    </a>
+                <div class="card-face card-back">
+                    <div class="word-bn" id="bengali-word">লোড হচ্ছে...</div>
+                    <div class="pronunciation" id="pronunciation">...</div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> Tchoisang lama. All rights reserved.</p>
+        <div class="controls">
+            <button id="prev-btn">❮ Previous</button>
+            <button id="next-btn">Next ❯</button>
         </div>
-    </footer>
+    </div>
 
-    <!-- JavaScript -->
+    <!-- Application Logic -->
     <script>
-        // Set current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // MOCK DATABASE: Categorized English to Bengali Vocabulary
+        const dictionaryData = {
+            "Daily Conversations": [
+                { en: "Hello", bn: "নমস্কার", pron: "Nomoshkar" },
+                { en: "How are you?", bn: "কেমন আছো?", pron: "Kemon acho?" },
+                { en: "Thank you", bn: "ধন্যবাদ", pron: "Dhonnobad" },
+                { en: "Good morning", bn: "সুপ্রভাত", pron: "šuprobhat" },
+                { en: "I am studying", bn: "আমি পড়াশোনা করছি", pron: "Ami porashona korchi" },
+                { en: "Water", bn: "জল", pron: "Jol" },
+                { en: "Food", bn: "খাবার", pron: "Khabar" },
+                { en: "Time", bn: "সময়", pron: "Shomoy" },
+                { en: "Goal", bn: "লক্ষ্য", pron: "Lokkho" },
+                { en: "Family", bn: "পরিবার", pron: "Poribar" },
+                { en: "Scooter / Bike", bn: "মোটরসাইকেল", pron: "Motor-cycle" }
+            ],
+            "Medical & Biology": [
+                { en: "Doctor", bn: "ডাক্তার", pron: "Daktar" },
+                { en: "Hospital", bn: "হাসপাতাল", pron: "Hashpatal" },
+                { en: "Medicine", bn: "ওষুধ", pron: "Oshudh" },
+                { en: "Heart", bn: "হৃদয়", pron: "Hridoy" },
+                { en: "Brain", bn: "মস্তিষ্ক", pron: "Mostisko" },
+                { en: "Blood", bn: "রক্ত", pron: "Rokto" },
+                { en: "Cell", bn: "কোষ", pron: "Kosh" },
+                { en: "Disease", bn: "রোগ", pron: "Rog" },
+                { en: "Patient", bn: "রোগী", pron: "Rogi" },
+                { en: "Health", bn: "স্বাস্থ্য", pron: "Shastho" },
+                { en: "Skeleton", bn: "কঙ্কাল", pron: "Kongkal" }
+            ],
+            "Romance & Relationships": [
+                { en: "Love", bn: "ভালোবাসা", pron: "Bhalobasha" },
+                { en: "Beautiful", bn: "সুন্দর", pron: "Shundor" },
+                { en: "Anniversary", bn: "বার্ষিকী", pron: "Barshiki" },
+                { en: "Forever", bn: "চিরকাল", pron: "Chirokal" },
+                { en: "Together", bn: "একসাথে", pron: "Ekshathe" },
+                { en: "Promise", bn: "প্রতিশ্রুতি", pron: "Protishruti" },
+                { en: "Soulmate", bn: "প্রাণের সাথী", pron: "Praner shathi" },
+                { en: "Gift", bn: "উপহার", pron: "Upohar" }
+            ]
+        };
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        const navLinksItems = document.querySelectorAll('.nav-links a');
+        // State Variables
+        let currentCategory = "Daily Conversations";
+        let currentIndex = 0;
+        let isFlipped = false;
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
+        // DOM Elements
+        const categorySelect = document.getElementById('category-select');
+        const flashcardContainer = document.getElementById('flashcard-container');
+        const flashcard = document.getElementById('flashcard');
+        const englishWordEl = document.getElementById('english-word');
+        const bengaliWordEl = document.getElementById('bengali-word');
+        const pronunciationEl = document.getElementById('pronunciation');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        // Initialize Application
+        function initApp() {
+            // Populate Dropdown
+            Object.keys(dictionaryData).forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+
+            updateCardContent();
+        }
+
+        // Update Flashcard Data
+        function updateCardContent() {
+            const currentList = dictionaryData[currentCategory];
+            const wordData = currentList[currentIndex];
+
+            // Reset flip state if flipped
+            if (isFlipped) {
+                flashcard.classList.remove('flipped');
+                isFlipped = false;
+                
+                // Wait for animation to finish before changing text
+                setTimeout(() => {
+                    setCardText(wordData);
+                }, 400); 
             } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                setCardText(wordData);
             }
+        }
+
+        function setCardText(wordData) {
+            englishWordEl.textContent = wordData.en;
+            bengaliWordEl.textContent = wordData.bn;
+            pronunciationEl.textContent = `[ ${wordData.pron} ]`;
+        }
+
+        // Event Listeners
+        
+        // Flip Card
+        flashcardContainer.addEventListener('click', () => {
+            isFlipped = !isFlipped;
+            flashcard.classList.toggle('flipped');
         });
 
-        // Close mobile menu when a link is clicked
-        navLinksItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
-                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
-            });
+        // Change Category
+        categorySelect.addEventListener('change', (e) => {
+            currentCategory = e.target.value;
+            currentIndex = 0; // Reset index when category changes
+            updateCardContent();
         });
 
-        // Highlight active nav link on scroll using Intersection Observer
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-link');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '-20% 0px -60% 0px', // Adjust offsets to trigger sooner/later
-            threshold: 0
-        };
-
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Remove active class from all links
-                    navItems.forEach(item => item.classList.remove('active'));
-                    
-                    // Add active class to the corresponding link
-                    const id = entry.target.getAttribute('id');
-                    const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add('active');
-                    }
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-        sections.forEach(section => {
-            observer.observe(section);
+        // Next Word
+        nextBtn.addEventListener('click', () => {
+            const listLength = dictionaryData[currentCategory].length;
+            currentIndex = (currentIndex + 1) % listLength; // Loop back to start
+            updateCardContent();
         });
+
+        // Previous Word
+        prevBtn.addEventListener('click', () => {
+            const listLength = dictionaryData[currentCategory].length;
+            currentIndex = (currentIndex - 1 + listLength) % listLength; // Loop to end
+            updateCardContent();
+        });
+
+        // Run Init
+        window.addEventListener('DOMContentLoaded', initApp);
+
     </script>
 </body>
 </html>
